@@ -50,16 +50,16 @@ public class SocketAdapter {
 		return result;
 	}
 
-	public void sendInt(int aValue) throws IOException {
-		out.writeInt(aValue);
+	public void sendInt(int value) throws IOException {
+		out.writeInt(value);
 	}
 
-	public void sendString(String aValue) throws IOException {
-		out.writeUTF(aValue);
+	public void sendString(String value) throws IOException {
+		out.writeUTF(value);
 	}
 
-	public void sendBoolean(boolean aValue) throws IOException {
-		out.writeBoolean(aValue);
+	public void sendBoolean(boolean value) throws IOException {
+		out.writeBoolean(value);
 	}
 
 	public void sendBuffer(byte[] buffer) throws IOException {
