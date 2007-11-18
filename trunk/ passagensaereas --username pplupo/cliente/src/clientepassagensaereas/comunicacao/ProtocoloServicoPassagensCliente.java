@@ -35,37 +35,37 @@ public class ProtocoloServicoPassagensCliente {
 		return socket.readString();
 	}
 
-	public int obtemVagasNoTrecho(int aTrecho) throws IOException {
+	public int obtemVagasNoTrecho(int trecho) throws IOException {
 		socket.sendInt(c_ObtemVagasNoTrecho);
-		socket.sendInt(aTrecho);
+		socket.sendInt(trecho);
 		return socket.readInt();
 	}
 
-	public boolean reservaTrecho(int aNumeroAssentos, int aTrecho)
+	public boolean reservaTrecho(int numeroAssentos, int trecho)
 			throws IOException {
 		socket.sendInt(c_ReservaTrecho);
-		socket.sendInt(aNumeroAssentos);
-		socket.sendInt(aTrecho);
+		socket.sendInt(numeroAssentos);
+		socket.sendInt(trecho);
 		return socket.readBoolean();
 	}
 
-	public boolean compraTrecho(int aNumeroAssentos, int aTrecho)
+	public boolean compraTrecho(int numeroAssentos, int trecho)
 			throws IOException {
 		socket.sendInt(c_CompraTrecho);
-		socket.sendInt(aNumeroAssentos);
-		socket.sendInt(aTrecho);
+		socket.sendInt(numeroAssentos);
+		socket.sendInt(trecho);
 		return socket.readBoolean();
 	}
 
-	public int consultaReserva(int aTrecho) throws IOException {
+	public int consultaReserva(int trecho) throws IOException {
 		socket.sendInt(c_ConsultaReserva);
-		socket.sendInt(aTrecho);
+		socket.sendInt(trecho);
 		return socket.readInt();
 	}
 
-	public int consultaCompras(int aTrecho) throws IOException {
+	public int consultaCompras(int trecho) throws IOException {
 		socket.sendInt(c_ConsultaCompras);
-		socket.sendInt(aTrecho);
+		socket.sendInt(trecho);
 		return socket.readInt();
 	}
 

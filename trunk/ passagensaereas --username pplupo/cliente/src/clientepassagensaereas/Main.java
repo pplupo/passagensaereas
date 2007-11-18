@@ -9,6 +9,7 @@
 
 package clientepassagensaereas;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 import clientepassagensaereas.comunicacao.SocketAdapter;
@@ -38,9 +39,12 @@ public class Main {
 			}
 			int t = servico.consultaCompras(3);
 			System.out.println(t);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (IOException ex) {
 			System.err.println("Erro de conexão com o servidor...");
+			ex.printStackTrace();
+		} catch (Exception ex) {
+			System.err.println("Erro de conexão com o servidor...");
+			ex.printStackTrace();
 		}
 	}
 

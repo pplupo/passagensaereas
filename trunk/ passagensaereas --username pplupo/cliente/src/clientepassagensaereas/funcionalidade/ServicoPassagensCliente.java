@@ -30,13 +30,6 @@ public class ServicoPassagensCliente {
 	}
 
 	public Collection obtemTrechos() throws IOException {
-		// String sTrecho, sTrechos = servicoRemoto.obtemTrechos();
-		// int i = 0, f;
-		// while ((f = sTrechos.indexOf(';', i)) > -1) {
-		// sTrecho = sTrechos.substring(i, f);
-		// lTrechos.add(sTrecho);
-		// i = f + 1;
-		// }
 		String[] trechosArray = servicoRemoto.obtemTrechos().split(";");
 		Collection trechos = new ArrayList(trechosArray.length);
 		for (int i = 0; i < trechosArray.length; i++) {
@@ -45,23 +38,23 @@ public class ServicoPassagensCliente {
 		return trechos;
 	}
 
-	public int obtemVagasNoTrecho(int aTrecho) throws IOException {
-		return servicoRemoto.obtemVagasNoTrecho(aTrecho);
+	public int obtemVagasNoTrecho(int trecho) throws IOException {
+		return servicoRemoto.obtemVagasNoTrecho(trecho);
 	}
 
-	public boolean reservaTrecho(int aNumeroDeAssentos, int aTrecho) throws IOException {
-		return servicoRemoto.reservaTrecho(aNumeroDeAssentos, aTrecho);
+	public boolean reservaTrecho(int numeroDeAssentos, int trecho) throws IOException {
+		return servicoRemoto.reservaTrecho(numeroDeAssentos, trecho);
 	}
 
-	public boolean compraTrecho(int aTrecho, int aNumeroDeAssentos) throws IOException {
-		return servicoRemoto.compraTrecho(aTrecho, aNumeroDeAssentos);
+	public boolean compraTrecho(int trecho, int numeroDeAssentos) throws IOException {
+		return servicoRemoto.compraTrecho(trecho, numeroDeAssentos);
 	}
 
-	public int consultaReserva(int aTrecho) throws IOException {
-		return servicoRemoto.consultaReserva(aTrecho);
+	public int consultaReserva(int trecho) throws IOException {
+		return servicoRemoto.consultaReserva(trecho);
 	}
 
-	public int consultaCompras(int aTrecho) throws IOException {
-		return servicoRemoto.consultaCompras(aTrecho);
+	public int consultaCompras(int trecho) throws IOException {
+		return servicoRemoto.consultaCompras(trecho);
 	}
 }
