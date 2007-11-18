@@ -19,27 +19,27 @@ public class ServicoPassagensServidor {
     public ServicoPassagensServidor() {
     }
     
-    public String ObtemTrechos() {
+    public String obtemTrechos() {
         return "RJ-SP;RJ-SA;RJ-BH;RG-BR;RJ-MN;";
     }
     
-    public int ObtemVagasNoTrecho(int aTrecho) {
+    public int obtemVagasNoTrecho(int aTrecho) {
         return 0;
     }
     
-    public boolean ReservaTrecho(int aNumeroDeAssentos, int aTrecho) {
+    public boolean reservaTrecho(int aNumeroDeAssentos, int aTrecho) {
         return false;
     }   
     
-    public boolean CompraTrecho(int aTrecho, int aNumeroDeAssentos) {
+    public boolean compraTrecho(int aTrecho, int aNumeroDeAssentos) {
         return false;
     }
     
-    public int ConsultaReserva(int aTrecho){
+    public int consultaReserva(int aTrecho){
         return 0;        
     }
     
-    public int ConsultaCompras(int aTrecho){
+    public int consultaCompras(int aTrecho){
         return 0;
     }
 }

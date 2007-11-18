@@ -19,7 +19,7 @@ import servidorpassagensaereas.funcionalidade.ServicoPassagensServidor;
  */
 public class ProtocoloServicoPassagensServidor {
 
-	private Socket2 socket;
+	private socketAdapter socket;
 	private ServicoPassagensServidor servico;
 	private final int c_ObtemTrechos = 1;
 	private final int c_CompraTrecho = 4;
@@ -29,37 +29,36 @@ public class ProtocoloServicoPassagensServidor {
 	private final int c_ObtemVagasNoTrecho = 2;
 
 	/** Creates a new instance of ProtocoloServicoPassagensServidor */
-	public ProtocoloServicoPassagensServidor(ServicoPassagensServidor aServico,
-			Socket2 aSocket) {
+	public ProtocoloServicoPassagensServidor(ServicoPassagensServidor aServico, socketAdapter aSocket) {
 		servico = aServico;
 		socket = aSocket;
 	}
 
-	public void ProcessaEventos() {
+	public void processaEventos() {
 		boolean bConexaoAtiva = true;
 		int iComando = 0;
 
 		try {
 			while (bConexaoAtiva) {
-				iComando = socket.ReadInt();
+				iComando = socket.readInt();
 				switch (iComando) {
 				case c_ObtemTrechos:
-					ObtemTrechos();
+					obtemTrechos();
 					break;
 				case c_CompraTrecho:
-					CompraTrecho();
+					compraTrecho();
 					break;
 				case c_ReservaTrecho:
-					ReservaTrecho();
+					reservaTrecho();
 					break;
 				case c_ConsultaReserva:
-					ConsultaReserva();
+					consultaReserva();
 					break;
 				case c_ConsultaCompras:
-					ConsultaCompras();
+					consultaCompras();
 					break;
 				case c_ObtemVagasNoTrecho:
-					ObtemVagasNoTrecho();
+					obtemVagasNoTrecho();
 					break;
 				default:
 					bConexaoAtiva = false;
@@ -73,41 +72,41 @@ public class ProtocoloServicoPassagensServidor {
 
 	}
 
-	public void ObtemTrechos() throws IOException {
-		String sResultado = servico.ObtemTrechos();
+	public void obtemTrechos() throws IOException {
+		String sResultado = servico.obtemTrechos();
 		socket.SendString(sResultado);
 	}
 
-	public void ObtemVagasNoTrecho() throws IOException {
-		int iTrecho = socket.ReadInt();
-		int iResultado = servico.ObtemVagasNoTrecho(iTrecho);
-		socket.SendInt(iResultado);
+	public void obtemVagasNoTrecho() throws IOException {
+		int iTrecho = socket.readInt();
+		int iResultado = servico.obtemVagasNoTrecho(iTrecho);
+		socket.sendInt(iResultado);
 	}
 
-	public void ReservaTrecho() throws IOException {
-		int iNumeroAssentos = socket.ReadInt();
-		int iTrecho = socket.ReadInt();
-		boolean bResultado = servico.ReservaTrecho(iNumeroAssentos, iTrecho);
-		socket.SendBoolean(bResultado);
+	public void reservaTrecho() throws IOException {
+		int iNumeroAssentos = socket.readInt();
+		int iTrecho = socket.readInt();
+		boolean bResultado = servico.reservaTrecho(iNumeroAssentos, iTrecho);
+		socket.sendBoolean(bResultado);
 	}
 
-	public void CompraTrecho() throws IOException {
-		int iTrecho = socket.ReadInt();
-		int iNumeroDeAssentos = socket.ReadInt();
-		boolean bResultado = servico.CompraTrecho(iTrecho, iNumeroDeAssentos);
-		socket.SendBoolean(bResultado);
+	public void compraTrecho() throws IOException {
+		int iTrecho = socket.readInt();
+		int iNumeroDeAssentos = socket.readInt();
+		boolean bResultado = servico.compraTrecho(iTrecho, iNumeroDeAssentos);
+		socket.sendBoolean(bResultado);
 	}
 
-	public void ConsultaReserva() throws IOException {
-		int iTrecho = socket.ReadInt();
-		int iResultado = servico.ConsultaReserva(iTrecho);
-		socket.SendInt(iResultado);
+	public void consultaReserva() throws IOException {
+		int iTrecho = socket.readInt();
+		int iResultado = servico.consultaReserva(iTrecho);
+		socket.sendInt(iResultado);
 	}
 
-	public void ConsultaCompras() throws IOException {
-		int iTrecho = socket.ReadInt();
-		int iResultado = servico.ConsultaCompras(iTrecho);
-		socket.SendInt(iResultado);
+	public void consultaCompras() throws IOException {
+		int iTrecho = socket.readInt();
+		int iResultado = servico.consultaCompras(iTrecho);
+		socket.sendInt(iResultado);
 	}
 
 }

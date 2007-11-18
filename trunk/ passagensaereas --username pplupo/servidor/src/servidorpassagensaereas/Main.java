@@ -18,10 +18,6 @@ import servidorpassagensaereas.funcionalidade.ServicoPassagensServidor;
  */
 public class Main {
     
-    /** Creates a new instance of Main */
-    public Main() {
-    }
-    
     /**
      * @param args the command line arguments
      */

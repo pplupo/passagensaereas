@@ -21,24 +21,24 @@ import java.net.Socket;
  *
  * @author leone
  */
-public class Socket2 {
+public class socketAdapter {
     
     private java.net.Socket socket;
     private DataOutputStream out;
     private DataInputStream in;
 
     /** Creates a new instance of clientSocket */
-    public Socket2() {
+    public socketAdapter() {
         socket = new java.net.Socket();
     }
     
-    public void Assign(Socket aSocket) throws IOException {
+    public void assign(Socket aSocket) throws IOException {
         socket = aSocket;
         in  = new DataInputStream(socket.getInputStream());
         out = new DataOutputStream(socket.getOutputStream());
     }
     
-    private byte [] IntToByte(int aValue) {
+    private byte [] intToByte(int aValue) {
         byte[] bIntValue = new byte[4];
         bIntValue[3] = (byte)((aValue >>> 24) & 0xFF);
         bIntValue[2] = (byte)((aValue >>> 16) & 0xFF);
@@ -47,14 +47,14 @@ public class Socket2 {
         return bIntValue;
     }
     
-    private byte[] BooleanToByte(boolean aValue) {
+    private byte[] booleanToByte(boolean aValue) {
         byte[] bBoolean = new byte[1];
         if (aValue) bBoolean[0] = 1;
         else bBoolean[0] = 0;
         return bBoolean;
     } 
     
-    private byte[] StringToByte(String aValue) {
+    private byte[] stringToByte(String aValue) {
         byte [] bValue = new byte[0];
         try {
             bValue = aValue.getBytes("UTF-8");
@@ -62,7 +62,7 @@ public class Socket2 {
         return bValue;
     }
     
-    private int ByteToInt(byte[] aValue) {
+    private int byteToInt(byte[] aValue) {
         int iResultado = 0;
         iResultado |= (aValue[3] << 24) & 0x0FF000000;
         iResultado |= (aValue[2] << 16) & 0x0FF0000;
@@ -71,11 +71,11 @@ public class Socket2 {
         return iResultado;        
     }
     
-    private boolean ByteToBoolean(byte[] aValue) {
+    private boolean byteToBoolean(byte[] aValue) {
         return (aValue[0] == 1);       
     }
     
-    private String ByteToString(byte [] aValue) {
+    private String byteToString(byte [] aValue) {
         String sResultado = "";
         try {
             sResultado = new String( aValue, "UTF-8" );
@@ -83,7 +83,7 @@ public class Socket2 {
         return sResultado;        
     }
     
-    public boolean ConnectTo(String ip, int port) {
+    public boolean connectTo(String ip, int port) {
         boolean result = true;
         try {
             socket.connect(new InetSocketAddress(InetAddress.getByName(ip), port));
@@ -95,40 +95,40 @@ public class Socket2 {
         return result;
     }
     
-    public void SendInt(int aValue) throws IOException {
-        SendBuffer(IntToByte(aValue));
+    public void sendInt(int aValue) throws IOException {
+        sendBuffer(intToByte(aValue));
     }
     
     public void SendString(String aValue) throws IOException {
-        SendInt(aValue.length());
-        SendBuffer(StringToByte(aValue));
+        sendInt(aValue.length());
+        sendBuffer(stringToByte(aValue));
     }
     
-    public void SendBoolean(boolean aValue) throws IOException {        
-        SendBuffer(BooleanToByte(aValue));
+    public void sendBoolean(boolean aValue) throws IOException {        
+        sendBuffer(booleanToByte(aValue));
     }
     
-    public void SendBuffer(byte[] buffer) throws IOException {
+    public void sendBuffer(byte[] buffer) throws IOException {
         out.write(buffer);
     }
     
-    public byte[] ReadBuffer(int length) throws IOException {
+    public byte[] readBuffer(int length) throws IOException {
         byte[] resultado = new byte[length];
         in.read(resultado, 0, length);
         return resultado;        
     }
     
-    public int ReadInt() throws IOException{
-        return ByteToInt(ReadBuffer(4));
+    public int readInt() throws IOException{
+        return byteToInt(readBuffer(4));
     }
     
-    public String ReadString() throws IOException {
-        int iSize = ReadInt();
-        return ByteToString(ReadBuffer(iSize));
+    public String readString() throws IOException {
+        int iSize = readInt();
+        return byteToString(readBuffer(iSize));
     }
     
-    public boolean ReadBoolean() throws IOException {
-        return ByteToBoolean(ReadBuffer(1));
+    public boolean readBoolean() throws IOException {
+        return byteToBoolean(readBuffer(1));
     }
     
 }
