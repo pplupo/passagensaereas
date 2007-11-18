@@ -10,61 +10,63 @@
 package clientepassagensaereas.comunicacao;
 
 import java.io.IOException;
+
 /**
- *
+ * 
  * @author leone
  */
 public class ProtocoloServicoPassagensCliente {
-    
-    private Socket2 socket;
-    private final int c_ObtemTrechos       = 1;
-    private final int c_CompraTrecho       = 4;
-    private final int c_ReservaTrecho      = 3;
-    private final int c_ConsultaReserva    = 5;
-    private final int c_ConsultaCompras    = 6;
-    private final int c_ObtemVagasNoTrecho = 2;
-    
-    
-    /** Creates a new instance of ProtocoloServicoPassagensCliente */
-    public ProtocoloServicoPassagensCliente(Socket2 aSocket) {
-        socket  = aSocket;
-    }
-    
-    public String ObtemTrechos() throws IOException {
-        socket.SendInt(c_ObtemTrechos);
-        return socket.ReadString();
-    }
-    
-    public int ObtemVagasNoTrecho(int aTrecho) throws IOException {
-        socket.SendInt(c_ObtemVagasNoTrecho);
-        socket.SendInt(aTrecho);
-        return socket.ReadInt();
-    }
-    
-    public boolean ReservaTrecho(int aNumeroAssentos, int aTrecho) throws IOException {
-        socket.SendInt(c_ReservaTrecho);
-        socket.SendInt(aNumeroAssentos);
-        socket.SendInt(aTrecho);
-        return socket.ReadBoolean();
-    }
-    
-    public boolean CompraTrecho(int aNumeroAssentos, int aTrecho) throws IOException {
-        socket.SendInt(c_CompraTrecho);
-        socket.SendInt(aNumeroAssentos);
-        socket.SendInt(aTrecho);
-        return socket.ReadBoolean();
-    }
-    
-    public int ConsultaReserva(int aTrecho) throws IOException {
-        socket.SendInt(c_ConsultaReserva);
-        socket.SendInt(aTrecho);
-        return socket.ReadInt();
-    }
-    
-    public int ConsultaCompras(int aTrecho) throws IOException {
-        socket.SendInt(c_ConsultaCompras);
-        socket.SendInt(aTrecho);
-        return socket.ReadInt();
-    }
-    
+
+	private SocketAdapter socket;
+	private final int c_ObtemTrechos = 1;
+	private final int c_CompraTrecho = 4;
+	private final int c_ReservaTrecho = 3;
+	private final int c_ConsultaReserva = 5;
+	private final int c_ConsultaCompras = 6;
+	private final int c_ObtemVagasNoTrecho = 2;
+
+	/** Creates a new instance of ProtocoloServicoPassagensCliente */
+	public ProtocoloServicoPassagensCliente(SocketAdapter aSocket) {
+		socket = aSocket;
+	}
+
+	public String obtemTrechos() throws IOException {
+		socket.sendInt(c_ObtemTrechos);
+		return socket.readString();
+	}
+
+	public int obtemVagasNoTrecho(int aTrecho) throws IOException {
+		socket.sendInt(c_ObtemVagasNoTrecho);
+		socket.sendInt(aTrecho);
+		return socket.readInt();
+	}
+
+	public boolean reservaTrecho(int aNumeroAssentos, int aTrecho)
+			throws IOException {
+		socket.sendInt(c_ReservaTrecho);
+		socket.sendInt(aNumeroAssentos);
+		socket.sendInt(aTrecho);
+		return socket.readBoolean();
+	}
+
+	public boolean compraTrecho(int aNumeroAssentos, int aTrecho)
+			throws IOException {
+		socket.sendInt(c_CompraTrecho);
+		socket.sendInt(aNumeroAssentos);
+		socket.sendInt(aTrecho);
+		return socket.readBoolean();
+	}
+
+	public int consultaReserva(int aTrecho) throws IOException {
+		socket.sendInt(c_ConsultaReserva);
+		socket.sendInt(aTrecho);
+		return socket.readInt();
+	}
+
+	public int consultaCompras(int aTrecho) throws IOException {
+		socket.sendInt(c_ConsultaCompras);
+		socket.sendInt(aTrecho);
+		return socket.readInt();
+	}
+
 }
