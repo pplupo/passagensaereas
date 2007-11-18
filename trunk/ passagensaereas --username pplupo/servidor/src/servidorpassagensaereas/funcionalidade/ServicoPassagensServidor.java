@@ -20,7 +20,7 @@ public class ServicoPassagensServidor {
     }
     
     public String obtemTrechos() {
-        return "RJ-SP;RJ-SA;RJ-BH;RG-BR;RJ-MN;";
+        return "RJ-SP;RJ-SA;RJ-BH;RJ-DF;RJ-MN;";
     }
     
     public int obtemVagasNoTrecho(int trecho) {
