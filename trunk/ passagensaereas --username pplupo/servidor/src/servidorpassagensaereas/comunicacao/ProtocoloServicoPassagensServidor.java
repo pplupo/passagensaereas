@@ -19,7 +19,7 @@ import servidorpassagensaereas.funcionalidade.ServicoPassagensServidor;
  */
 public class ProtocoloServicoPassagensServidor {
 
-	private socketAdapter socket;
+	private SocketAdapter socket;
 	private ServicoPassagensServidor servico;
 	private final int c_ObtemTrechos = 1;
 	private final int c_CompraTrecho = 4;
@@ -29,19 +29,16 @@ public class ProtocoloServicoPassagensServidor {
 	private final int c_ObtemVagasNoTrecho = 2;
 
 	/** Creates a new instance of ProtocoloServicoPassagensServidor */
-	public ProtocoloServicoPassagensServidor(ServicoPassagensServidor aServico, socketAdapter aSocket) {
+	public ProtocoloServicoPassagensServidor(ServicoPassagensServidor aServico, SocketAdapter aSocket) {
 		servico = aServico;
 		socket = aSocket;
 	}
 
 	public void processaEventos() {
-		boolean bConexaoAtiva = true;
-		int iComando = 0;
-
+		boolean conexaoAtiva = true;
 		try {
-			while (bConexaoAtiva) {
-				iComando = socket.readInt();
-				switch (iComando) {
+			while (conexaoAtiva) {
+				switch (socket.readInt()) {
 				case c_ObtemTrechos:
 					obtemTrechos();
 					break;
@@ -61,52 +58,52 @@ public class ProtocoloServicoPassagensServidor {
 					obtemVagasNoTrecho();
 					break;
 				default:
-					bConexaoAtiva = false;
+					conexaoAtiva = false;
 					break;
 				}
 			}
 		} catch (Exception ex) {
-			bConexaoAtiva = false;
+			conexaoAtiva = false;
 			System.err.println("Conexão cliente terminada.");
 		}
 
 	}
 
 	public void obtemTrechos() throws IOException {
-		String sResultado = servico.obtemTrechos();
-		socket.SendString(sResultado);
+		String resultado = servico.obtemTrechos();
+		socket.sendString(resultado);
 	}
 
 	public void obtemVagasNoTrecho() throws IOException {
-		int iTrecho = socket.readInt();
-		int iResultado = servico.obtemVagasNoTrecho(iTrecho);
-		socket.sendInt(iResultado);
+		int trecho = socket.readInt();
+		int resultado = servico.obtemVagasNoTrecho(trecho);
+		socket.sendInt(resultado);
 	}
 
 	public void reservaTrecho() throws IOException {
-		int iNumeroAssentos = socket.readInt();
-		int iTrecho = socket.readInt();
-		boolean bResultado = servico.reservaTrecho(iNumeroAssentos, iTrecho);
-		socket.sendBoolean(bResultado);
+		int numeroAssentos = socket.readInt();
+		int trecho = socket.readInt();
+		boolean resultado = servico.reservaTrecho(numeroAssentos, trecho);
+		socket.sendBoolean(resultado);
 	}
 
 	public void compraTrecho() throws IOException {
-		int iTrecho = socket.readInt();
-		int iNumeroDeAssentos = socket.readInt();
-		boolean bResultado = servico.compraTrecho(iTrecho, iNumeroDeAssentos);
-		socket.sendBoolean(bResultado);
+		int trecho = socket.readInt();
+		int numeroDeAssentos = socket.readInt();
+		boolean resultado = servico.compraTrecho(trecho, numeroDeAssentos);
+		socket.sendBoolean(resultado);
 	}
 
 	public void consultaReserva() throws IOException {
-		int iTrecho = socket.readInt();
-		int iResultado = servico.consultaReserva(iTrecho);
-		socket.sendInt(iResultado);
+		int trecho = socket.readInt();
+		int resultado = servico.consultaReserva(trecho);
+		socket.sendInt(resultado);
 	}
 
 	public void consultaCompras() throws IOException {
-		int iTrecho = socket.readInt();
-		int iResultado = servico.consultaCompras(iTrecho);
-		socket.sendInt(iResultado);
+		int trecho = socket.readInt();
+		int resultado = servico.consultaCompras(trecho);
+		socket.sendInt(resultado);
 	}
 
 }

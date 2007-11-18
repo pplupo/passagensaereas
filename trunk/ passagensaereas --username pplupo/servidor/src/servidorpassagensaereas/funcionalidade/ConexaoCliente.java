@@ -10,7 +10,7 @@
 package servidorpassagensaereas.funcionalidade;
 
 import servidorpassagensaereas.comunicacao.ProtocoloServicoPassagensServidor;
-import servidorpassagensaereas.comunicacao.socketAdapter;
+import servidorpassagensaereas.comunicacao.SocketAdapter;
 
 /**
  *
@@ -18,13 +18,13 @@ import servidorpassagensaereas.comunicacao.socketAdapter;
  */
 public class ConexaoCliente implements Runnable {
     
-    private socketAdapter socket;
+    private SocketAdapter socket;
     private ServicoPassagensServidor servico;
     
     /** Creates a new instance of ConexaoCliente */
-    public ConexaoCliente(socketAdapter aSocket, ServicoPassagensServidor aServico) {
-        socket = aSocket;
-        servico = aServico;
+    public ConexaoCliente(SocketAdapter socket, ServicoPassagensServidor servico) {
+        this.socket = socket;
+        this.servico = servico;
     }
     
     public void run() {

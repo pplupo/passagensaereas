@@ -24,30 +24,24 @@ public class SocketServidor implements Runnable {
 	private ServicoPassagensServidor servico;
 
 	/** Creates a new instance of SocketServidor */
-	public SocketServidor(int aPortaEscuta, ServicoPassagensServidor aServico) {
+	public SocketServidor(int portaEscuta, ServicoPassagensServidor servico) {
 		try {
-			servico = aServico;
-			serverSocket = new ServerSocket(aPortaEscuta);
+			this.servico = servico;
+			serverSocket = new ServerSocket(portaEscuta);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	private void trataNovasConexoes() {
+	public void run() {
 		while (true) {
 			try {
-				java.net.Socket socket = serverSocket.accept();
-				socketAdapter novoSocket = new socketAdapter();
-				novoSocket.assign(socket);
+				SocketAdapter novoSocket = new SocketAdapter(serverSocket.accept());
 				Thread thread = new Thread(new ConexaoCliente(novoSocket, servico));
 				thread.start();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
 		}
-	}
-
-	public void run() {
-		trataNovasConexoes();
 	}
 }
