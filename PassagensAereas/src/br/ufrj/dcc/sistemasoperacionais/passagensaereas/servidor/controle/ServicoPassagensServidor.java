@@ -41,4 +41,9 @@ public class ServicoPassagensServidor {
 		Trecho objTrecho = trechos.getTrecho(trecho);
 		return (objTrecho != null ? objTrecho.getCompras() : -1);
     }
+
+	public Trechos getTrechos() {
+		return trechos;
+	}
+	
 }

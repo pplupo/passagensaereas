@@ -1,35 +1,39 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.controle;
 
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Trechos {
 
-	private Map<Integer, Trecho> trechosId;
+	private Map<Integer, Trecho> trechos;
 	
 	public Trechos(){
-		trechosId = new HashMap<Integer, Trecho>();
+		trechos = new TreeMap<Integer, Trecho>();
 	}
 	
 	public void adicionaTrecho(Integer id, String nomeTrecho, int assentos){
-		trechosId.put(id, new Trecho(nomeTrecho, assentos));
+		trechos.put(id, new Trecho(id, nomeTrecho, assentos));
 	}
 	
 	public String obtemTrechos() {
 		StringBuilder resultado = new StringBuilder();
-		for (Map.Entry<Integer, Trecho> trecho : trechosId.entrySet()) {
-			resultado.append(trecho.getKey());
+		for (Trecho trecho : trechos.values()) {
+			resultado.append(trecho.getId());
 			resultado.append("@");
-			resultado.append(trecho.getValue().getNome());
+			resultado.append(trecho.getNome());
 			resultado.append("@");
-			resultado.append(trecho.getValue().getVagas());
+			resultado.append(trecho.getVagas());
 			resultado.append(";");
 		}
 		return resultado.toString();
 	}
 	
 	public Trecho getTrecho(int trecho) {
-		return trechosId.get(trecho);
+		return trechos.get(trecho);
 	}
 	
+	public Collection<Trecho> list() {
+		return trechos.values();
+	}
 }

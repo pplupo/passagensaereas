@@ -2,15 +2,19 @@ package br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.controle;
 
 import java.util.concurrent.Semaphore;
 
+import br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.gui.TelaPrincipal;
+
 public class Trecho {
 	private String nome;
+	private int id;
 	private int numeroAssentos;
 	private int numeroReservas = 0;
 	private int numeroCompras = 0;
 	private Reservas reservas;	
 	private Semaphore semaforoBinario = new Semaphore(1, true);
 	
-	public Trecho(String nome, int numeroAssentos) {
+	public Trecho(int id, String nome, int numeroAssentos) {
+		this.id = id;
 		this.nome = nome;
 		this.numeroAssentos = numeroAssentos;
 		this.reservas = new Reservas(this);
@@ -25,7 +29,7 @@ public class Trecho {
 	}
 	
 	public int getVagas() {
-		return (int)(numeroAssentos * 1.1) - numeroCompras - numeroReservas;
+		return (int)numeroAssentos - numeroCompras - numeroReservas;
 	}
 	
 	public void setCompras(int numeroCompras) {
@@ -37,11 +41,11 @@ public class Trecho {
 	}
 	
 	public int getReservas() {
-		return numeroReservas;		
+		return numeroReservas;
 	}
 	
 	public int getCompras() {
-		return numeroCompras;		
+		return numeroCompras;
 	}
 	
 	public void bloqueiaTrecho(){
@@ -58,12 +62,7 @@ public class Trecho {
 	}
 	
 	private static void notificaAtualizacaoDeTrecho(Trecho trecho){
-		System.out.println(
-				" Trecho : " + trecho.getNome() + "; " + 				
-				" Reservas(" +  trecho.getReservas() + "), " +
-				" Compras (" + trecho.getCompras() + "), " +
-				" Assentos (" + trecho.getAssentos() + "), " +
-				" Disponiveis (" + (trecho.getVagas()) + ")." );
+		TelaPrincipal.getInstance().atualizaTrechos();
 	}
 	
 	public boolean adicionaReserva(Object cliente, int numeroDeAssentos){
@@ -78,6 +77,10 @@ public class Trecho {
 		boolean resultado = reservas.efetuaCompra(cliente, numeroDeAssentos);
 		desbloqueiaTrecho();
 		return resultado;
+	}
+
+	public int getId() {
+		return id;
 	}
 	
 }
