@@ -41,7 +41,7 @@ public class Reservas {
 			Reserva reserva = obtemNovaReservaCliente(cliente);			 
 			reserva.SetNumeroAssentos(reserva.GetNumeroAssentos() + numeroDeAssentos);
 			trecho.setReservas(numReservasRealizadas + numeroDeAssentos);
-			new TimerLiberacaoReserva(reserva, this, trecho, 15);
+			new TimerLiberacaoReserva(reserva, this, trecho, 5);
 			resultado = true;
 		}
 		return resultado;		
