@@ -44,7 +44,7 @@ public class TelaPrincipal extends JFrame {
          	catch (Exception ignore) {}
         }
         
-        setTitle("Cliente");
+        setTitle("Servidor");
 
 //		dlu unidade de tamanho
 //		pref tamanho preferencial
