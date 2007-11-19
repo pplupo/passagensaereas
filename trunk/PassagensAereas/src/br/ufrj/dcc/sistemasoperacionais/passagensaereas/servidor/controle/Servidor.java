@@ -39,4 +39,8 @@ public class Servidor extends Thread {
 			}
 		}
 	}
+
+	public static ServicoPassagensServidor getServico() {
+		return servico;
+	}
 }
