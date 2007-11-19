@@ -19,7 +19,7 @@ public class ServicoPassagensServidor {
     }
     
     public synchronized int consultaReserva(int trecho){
-        return 0;        
+        return 0;
     }
     
     public synchronized int consultaCompras(int trecho){
