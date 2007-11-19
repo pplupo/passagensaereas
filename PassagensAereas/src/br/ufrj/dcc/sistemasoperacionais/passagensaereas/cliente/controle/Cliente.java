@@ -1,6 +1,8 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.TreeSet;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.comunicacao.Protocolo;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.comunicacao.SocketAdapter;
@@ -21,9 +23,17 @@ public class Cliente {
 		socket.connectTo("localhost", 5000);
 	}
 
-	public String[] obtemTrechos() throws IOException {
+	public Collection<Trecho> obtemTrechos() throws IOException {
+		Collection<Trecho> trechos = new TreeSet<Trecho>();
 		socket.sendComando(Protocolo.OBTEM_TRECHOS);
-		return socket.readString().split(";");
+		String[] dadosTrechos = socket.readString().split(";");
+		for (String dadosTrecho : dadosTrechos) {
+			String[] trecho = dadosTrecho.split("@");
+			trechos.add(new Trecho(Integer.parseInt(trecho[0]),
+									trecho[1],
+									Integer.parseInt(trecho[2])));
+		}
+		return trechos;
 	}
 
 	public int obtemVagasNoTrecho(int trecho) throws IOException {
@@ -31,7 +41,7 @@ public class Cliente {
 		socket.sendInt(trecho);
 		return socket.readInt();
 	}
-
+	
 	public boolean reservaTrecho(int numeroAssentos, int trecho) throws IOException {
 		socket.sendComando(Protocolo.RESERVA_TRECHO);
 		socket.sendInt(numeroAssentos);

@@ -2,12 +2,14 @@ package br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui;
 
 import java.io.IOException;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
+import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Trecho;
 
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -44,21 +46,30 @@ public class TelaPrincipal extends JFrame {
 //		top:Xdlu align top
 //		bottom:Xdlu align bottom
         FormLayout layout = new FormLayout("4dlu, pref, 4dlu", 
-    										"4dlu, pref, 4dlu");
+    										"4dlu, pref, pref, 4dlu");
         setLayout(layout);
         
         CellConstraints cellConstraints = new CellConstraints();
-        DefaultListModel listModel = new DefaultListModel();
-        JList list = new JList(listModel);
+        DefaultTableModel tableModel = new DefaultTableModel();
+        JTable table = new JTable();
+        table.setModel(tableModel);
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Trechos");
+        tableModel.addColumn("Vagas");
+        
         try {
-			for (String trecho : Cliente.getInstance().obtemTrechos()) {
-				listModel.addElement(trecho);
+			for (Trecho trecho : Cliente.getInstance().obtemTrechos()) {
+				tableModel.addRow(new Object[] {trecho.getId(), trecho.getNome(), trecho.getVagasDisponiveis()});
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		table.getTableHeader().setEnabled(true);
+		table.getTableHeader().setVisible(true);
+		
 //      cellConstraints.xywh(int, int, int, int) x,y coordenadas w,h rowspan, colspan
-	    add(list, cellConstraints.xy(2, 2));    
+	    add(table.getTableHeader(), cellConstraints.xy(2, 2));
+	    add(table, cellConstraints.xy(2, 3));
 
 	    pack();
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
