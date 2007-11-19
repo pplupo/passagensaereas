@@ -1,10 +1,11 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.controle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Trechos {
 
-	private ArrayList<Trecho> trechos;
+	private List<Trecho> trechos;
 	
 	public Trechos(){
 		trechos = new ArrayList<Trecho>();
@@ -15,20 +16,20 @@ public class Trechos {
 	}
 	
 	public String obtemTrechos() {
-		String resultado = "";
-		int i = 0;
-		while (i < trechos.size()) {			
-			resultado += trechos.get(i).getNome() + ";";
-			i++;
+		StringBuilder resultado = new StringBuilder();
+		for (Trecho trecho : trechos) {			
+			resultado.append(trecho.getNome());
+			resultado.append(";");
 		}
-		return resultado;
+		return resultado.toString();
 	}
 	
 	public Trecho getTrecho(int trecho) {
-		if (trecho < trechos.size())
+		if (trecho < trechos.size()) {
 			return trechos.get(trecho);
-		else
+		} else {
 			return null;
+		}
 	}
 	
 	

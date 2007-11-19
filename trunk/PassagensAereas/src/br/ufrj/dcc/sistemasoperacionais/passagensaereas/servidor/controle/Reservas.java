@@ -13,9 +13,9 @@ public class Reservas {
 
 	private Reserva obtemNovaReservaCliente(Object cliente){
 		int i = buscaReserva(cliente);
-		if (i > -1) 
+		if (i > -1) {
 			return reservas.get(i);
-		else {
+		} else {
 			Reserva resultado = new Reserva(cliente, 0);
 			reservas.add(resultado);
 			return resultado;
@@ -23,13 +23,13 @@ public class Reservas {
 	}
 	
 	private int buscaReserva(Object cliente){
-		boolean bAchou = false;
+		boolean achou = false;
 		int i = 0;
-		while ((i < reservas.size()) && !bAchou) {
-			bAchou = (cliente == reservas.get(i).GetCliente());
+		while ((i < reservas.size()) && !achou) {
+			achou = (cliente == reservas.get(i).GetCliente());
 			i++;
 		}
-		return (bAchou ? i-1 : -1);
+		return (achou ? i-1 : -1);
 	}
 	
 	public boolean adicionaReserva(Object cliente, int numeroDeAssentos){
