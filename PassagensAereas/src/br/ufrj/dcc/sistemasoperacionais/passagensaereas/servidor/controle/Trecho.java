@@ -20,23 +20,27 @@ public class Trecho {
 		return nome;
 	}
 	
-	public int getNumeroAssentos () {
+	public int getAssentos () {
 		return numeroAssentos;
 	}
 	
-	public void setNumeroCompras(int numeroCompras) {
+	public int getVagas() {
+		return (int)(numeroAssentos * 1.1) - numeroCompras - numeroReservas;
+	}
+	
+	public void setCompras(int numeroCompras) {
 		this.numeroCompras = numeroCompras;
 	}
 	
-	public void setNumeroReservas(int numeroReservas) {
+	public void setReservas(int numeroReservas) {
 		this.numeroReservas = numeroReservas;
 	}
 	
-	public int getNumeroReservas() {
+	public int getReservas() {
 		return numeroReservas;		
 	}
 	
-	public int getNumeroCompras() {
+	public int getCompras() {
 		return numeroCompras;		
 	}
 	
@@ -53,13 +57,13 @@ public class Trecho {
 		semaforoBinario.release();
 	}
 	
-	private void notificaAtualizacaoDeTrecho(Trecho trecho){
+	private static void notificaAtualizacaoDeTrecho(Trecho trecho){
 		System.out.println(
 				" Trecho : " + trecho.getNome() + "; " + 				
-				" Reservas(" +  trecho.getNumeroReservas() + "), " +
-				" Compras (" + trecho.getNumeroCompras() + "), " +
-				" Assentos (" + trecho.getNumeroAssentos() + "), " +
-				" Disponiveis (" + (trecho.getNumeroAssentos() - trecho.getNumeroCompras()) + ")." );
+				" Reservas(" +  trecho.getReservas() + "), " +
+				" Compras (" + trecho.getCompras() + "), " +
+				" Assentos (" + trecho.getAssentos() + "), " +
+				" Disponiveis (" + (trecho.getVagas()) + ")." );
 	}
 	
 	public boolean adicionaReserva(Object cliente, int numeroDeAssentos){

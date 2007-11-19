@@ -34,13 +34,13 @@ public class Reservas {
 	
 	public boolean adicionaReserva(Object cliente, int numeroDeAssentos){
 		boolean resultado = false;
-		int numReservasRealizadas = trecho.getNumeroReservas(); 
-		int numReservasPossiveis = (int)(trecho.getNumeroAssentos() * 1.1);		
+		int numReservasRealizadas = trecho.getReservas(); 
+		int numReservasPossiveis = (int)(trecho.getAssentos() * 1.1);		
 		
 		if ((numReservasRealizadas + numeroDeAssentos) <= numReservasPossiveis) {
 			Reserva reserva = obtemNovaReservaCliente(cliente);			 
 			reserva.SetNumeroAssentos(reserva.GetNumeroAssentos() + numeroDeAssentos);
-			trecho.setNumeroReservas(numReservasRealizadas + numeroDeAssentos);
+			trecho.setReservas(numReservasRealizadas + numeroDeAssentos);
 			new TimerLiberacaoReserva(reserva, this, trecho, 15);
 			resultado = true;
 		}
@@ -49,7 +49,7 @@ public class Reservas {
 	
 	public void removeReserva(Reserva reserva){
 		if (reservas.indexOf(reserva) > -1) {
-			trecho.setNumeroReservas(trecho.getNumeroReservas() - reserva.GetNumeroAssentos());
+			trecho.setReservas(trecho.getReservas() - reserva.GetNumeroAssentos());
 			reservas.remove(reserva);
 		}
 	}
@@ -60,9 +60,9 @@ public class Reservas {
 		if (i > -1) {
 			Reserva reserva = reservas.get(i);
 			if (reserva.GetNumeroAssentos() >= numeroDeAssentos) {
-				int numAssentosComprados = trecho.getNumeroCompras(); 
-				if ((numAssentosComprados + numeroDeAssentos) < trecho.getNumeroAssentos()) {
-					trecho.setNumeroCompras(numAssentosComprados + numeroDeAssentos);
+				int numAssentosComprados = trecho.getCompras(); 
+				if ((numAssentosComprados + numeroDeAssentos) < trecho.getAssentos()) {
+					trecho.setCompras(numAssentosComprados + numeroDeAssentos);
 					resultado = true;
 				}
 				removeReserva(reserva);
