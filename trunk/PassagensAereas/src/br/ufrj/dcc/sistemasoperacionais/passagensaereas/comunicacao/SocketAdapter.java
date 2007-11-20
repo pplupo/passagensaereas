@@ -3,6 +3,7 @@ package br.ufrj.dcc.sistemasoperacionais.passagensaereas.comunicacao;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -22,13 +23,13 @@ public class SocketAdapter {
 		out = new DataOutputStream(socket.getOutputStream());
 	}
 
-	public boolean connectTo(String ip, int port) {
+	public boolean connectTo(String ip, int port) throws ConnectException {
 		boolean result = true;
 		try {
 			socket.connect(new InetSocketAddress(InetAddress.getByName(ip), port));
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
-		} catch (Exception ex) {
+		} catch (IOException ex) {
 			ex.printStackTrace();
 			result = false;
 		}
