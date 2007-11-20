@@ -101,7 +101,7 @@ public class TelaPrincipal extends JFrame {
         
 	    add(table.getTableHeader(), cellConstraints.xyw(2, 4, 3));
 	    add(table, cellConstraints.xyw(2, 5, 3));
-        table.setGridColor(Color.WHITE);
+        table.setGridColor(table.getBackground());
 		table.getTableHeader().setEnabled(true);
 		table.getTableHeader().setVisible(true);
         
