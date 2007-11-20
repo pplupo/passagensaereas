@@ -8,12 +8,12 @@ import javax.swing.JTable;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 
-public class AtualizarComprasTotais extends AtualizarCompras {
+public class AtualizarComprasTotais extends Listener {
 
 	JLabel consultarTotalCompras;
 	
-	public AtualizarComprasTotais(JTable table, JLabel consultarCompras, JLabel consultarComprasTotais) {
-		super(table, consultarCompras);
+	public AtualizarComprasTotais(JTable table, JLabel consultarComprasTotais) {
+		super(table);
 		this.consultarTotalCompras = consultarComprasTotais;
 	}
 
@@ -24,7 +24,7 @@ public class AtualizarComprasTotais extends AtualizarCompras {
 			if (compras < 0) {
 				compras = 0;
 			}
-			this.consultarTotalCompras.setText("Compras totais: " + compras);
+			this.consultarTotalCompras.setText("existem no total " + compras + " assento(s) comprado(s).");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

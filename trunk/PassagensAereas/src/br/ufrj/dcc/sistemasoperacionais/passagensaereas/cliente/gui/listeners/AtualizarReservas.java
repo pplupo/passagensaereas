@@ -23,11 +23,14 @@ public class AtualizarReservas extends Listener {
 			if (reservas < 0) {
 				reservas = 0;
 			}
-			consultarReservas.setText("Reservas: " + reservas);
+			if (reservas < 1) 
+				consultarReservas.setText("não existem reservas para o trecho selecionado.");
+			else
+				consultarReservas.setText("existem " + reservas + " assento(s) reservado(s).");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException ex) {
-			//nenhuma linha selecionada (linha = -1)
+			consultarReservas.setText("primeiro selecione um trecho.");
 		}
 		super.actionPerformed(e);
 	}
