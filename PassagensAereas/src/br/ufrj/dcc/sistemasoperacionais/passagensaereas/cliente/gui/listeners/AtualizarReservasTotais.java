@@ -8,12 +8,12 @@ import javax.swing.JTable;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 
-public class AtualizarReservasTotais extends AtualizarReservas {
+public class AtualizarReservasTotais extends Listener {
 
 	JLabel consultarReservasTotais;
 	
-	public AtualizarReservasTotais(JTable table, JLabel consultarReservas, JLabel consultarReservasTotais) {
-		super(table, consultarReservas);
+	public AtualizarReservasTotais(JTable table, JLabel consultarReservasTotais) {
+		super(table);
 		this.consultarReservasTotais = consultarReservasTotais;
 	}
 
@@ -23,7 +23,7 @@ public class AtualizarReservasTotais extends AtualizarReservas {
 			if (reservas < 0) {
 				reservas = 0;
 			}
-			consultarReservasTotais.setText("Reservas totais: " + reservas);
+			consultarReservasTotais.setText("existem no total " + reservas + " reserva(s).");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

@@ -9,21 +9,28 @@ import javax.swing.JTable;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 
-public class EfetuarReservas extends AtualizarReservas {
+public class EfetuarReservas extends Listener {
 
 	JFormattedTextField quantidadeReservas;
 	JLabel consultarReservas;
 	
 	public EfetuarReservas(JTable table, JFormattedTextField quantidadeReservas, JLabel consultarReservas) {
-		super(table, consultarReservas);
+		super(table);
 		this.quantidadeReservas = quantidadeReservas;
 		this.consultarReservas = consultarReservas;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		try {
-			Cliente.getInstance().reservaTrecho(Integer.parseInt(quantidadeReservas.getText()), (Integer)table.getModel().getValueAt(table.getSelectedRow(), 0));
-			quantidadeReservas.setText("0");
+			boolean resultado;
+			resultado = Cliente.getInstance().reservaTrecho(Integer.parseInt(quantidadeReservas.getText()), (Integer)table.getModel().getValueAt(table.getSelectedRow(), 0));
+			if (resultado) { 
+				quantidadeReservas.setText("0");
+				consultarReservas.setText("reserva efetuada com sucesso.");
+			}
+			else {
+				consultarReservas.setText("não foi possível efetuar a reserva, verifique a disponibilidade de assentos.");
+			}
 		} catch (NumberFormatException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
@@ -31,7 +38,7 @@ public class EfetuarReservas extends AtualizarReservas {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException ex) {
-			//nenhuma linha selecionada (linha = -1)
+			consultarReservas.setText("primeiro selecione um trecho.");
 		}
 		super.actionPerformed(e);
 	}

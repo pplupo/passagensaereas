@@ -24,11 +24,11 @@ public class AtualizarCompras extends Listener {
 			if (compras < 0) {
 				compras = 0;
 			}
-			consultarCompras.setText("Compras: " + compras);
+			consultarCompras.setText(compras + " assento(s) comprado(s).");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException ex) {
-			//nenhuma linha selecionada (linha = -1)
+			consultarCompras.setText("primeiro selecione um trecho.");
 		}
 	}
 

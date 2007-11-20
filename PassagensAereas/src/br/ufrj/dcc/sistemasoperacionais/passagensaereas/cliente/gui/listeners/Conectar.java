@@ -5,28 +5,28 @@ import java.net.ConnectException;
 import java.net.UnknownHostException;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.TelaPrincipal;
 
-import com.activetree.view.AtIPAddressField;
-
 public class Conectar extends Listener {
 	
-	private AtIPAddressField ip;
+	private JTextField ip;
 	private TelaPrincipal telaPrincipal;
 
-	public Conectar(JTable table, AtIPAddressField ip, TelaPrincipal telaPrincipal) {
+	public Conectar(JTable table, JTextField ip, TelaPrincipal telaPrincipal) {
 		super(table);
 		this.ip = ip;
 		this.telaPrincipal = telaPrincipal;
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		telaPrincipal.habilitarBotoes(false);
 		try {
-		Cliente.getInstance(ip.getModel().getAtString());
+		Cliente.getInstance(ip.getText());
 		super.actionPerformed(e);
-		telaPrincipal.habilitarBotoes();
+		telaPrincipal.habilitarBotoes(true);
 		} catch (ConnectException ex) {
 			ex.printStackTrace();
 		} catch (UnknownHostException ex) {
