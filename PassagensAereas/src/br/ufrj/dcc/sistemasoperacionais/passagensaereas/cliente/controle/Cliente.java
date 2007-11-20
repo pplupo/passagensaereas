@@ -11,16 +11,24 @@ public class Cliente {
 
 	private static SocketAdapter socket = new SocketAdapter();
 	private static Cliente instance;
+	private static String lastIP = "";
 	
-	public static Cliente getInstance() {
-		if (instance == null) {
-			instance = new Cliente();
+	public static Cliente getInstance(String ip) {
+		if (ip == null || lastIP.equals(ip)) {
+			return null;
+		}
+		if (!lastIP.equals(ip)) {
+			instance = new Cliente(ip);
 		}
 		return instance;
 	}
+	
+	public static Cliente getInstance() {
+		return instance;
+	}
 
-	private Cliente() {
-		socket.connectTo("localhost", 5000);
+	private Cliente(String ip) {
+		socket.connectTo(ip, 5000);
 	}
 
 	public Collection<Trecho> obtemTrechos() throws IOException {

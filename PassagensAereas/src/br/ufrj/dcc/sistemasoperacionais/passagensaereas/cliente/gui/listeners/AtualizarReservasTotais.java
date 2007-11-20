@@ -12,10 +12,6 @@ public class AtualizarReservasTotais extends Listener {
 
 	JLabel consultarReservasTotais;
 	
-	protected AtualizarReservasTotais(JTable table) {
-		super(table);
-	}
-	
 	public AtualizarReservasTotais(JTable table, JLabel consultarReservasTotais) {
 		super(table);
 		this.consultarReservasTotais = consultarReservasTotais;
@@ -27,7 +23,7 @@ public class AtualizarReservasTotais extends Listener {
 			if (reservas < 0) {
 				reservas = 0;
 			}
-			consultarReservasTotais.setText("Reservas: " + reservas);
+			consultarReservasTotais.setText("Reservas totais: " + reservas);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

@@ -12,11 +12,6 @@ public class AtualizarCompras extends Listener {
 
 	JLabel consultarCompras;
 	
-	protected AtualizarCompras(JTable table) {
-		super(table);
-		// TODO Auto-generated constructor stub
-	}
-
 	public AtualizarCompras(JTable table, JLabel consultarCompras) {
 		super(table);
 		this.consultarCompras = consultarCompras;

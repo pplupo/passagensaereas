@@ -13,10 +13,6 @@ public class EfetuarCompras extends AtualizarCompras {
 	
 	private JFormattedTextField quantidadeCompras;
 
-	protected EfetuarCompras(JTable table) {
-		super(table);
-	}
-	
 	public EfetuarCompras (JTable table, JFormattedTextField quantidadeCompras, JLabel consultarCompras) {
 		super(table, consultarCompras);
 		this.quantidadeCompras = quantidadeCompras;
