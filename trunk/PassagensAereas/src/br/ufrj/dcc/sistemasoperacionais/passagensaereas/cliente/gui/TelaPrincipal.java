@@ -1,6 +1,5 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
