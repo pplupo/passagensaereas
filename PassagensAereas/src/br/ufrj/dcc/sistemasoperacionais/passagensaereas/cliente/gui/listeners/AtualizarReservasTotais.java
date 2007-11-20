@@ -22,15 +22,15 @@ public class AtualizarReservasTotais extends Listener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-//		try {
-//			int reservas = Cliente.getInstance().consultaReservasTotais();
-//			if (reservas < 0) {
-//				reservas = 0;
-//			}
-//			consultarReservasTotais.setText("Reservas: " + reservas);
-//		} catch (IOException ex) {
-//			ex.printStackTrace();
-//		}
+		try {
+			int reservas = Cliente.getInstance().obtemTotalReservas();
+			if (reservas < 0) {
+				reservas = 0;
+			}
+			consultarReservasTotais.setText("Reservas: " + reservas);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 		super.actionPerformed(e);
 	}
 

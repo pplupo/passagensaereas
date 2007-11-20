@@ -7,7 +7,9 @@ public enum Protocolo {
 	RESERVA_TRECHO(3),
 	CONSULTA_RESERVA(5),
 	CONSULTA_COMPRAS(6),
-	OBTEM_VAGAS_NO_TRECHO(2);
+	OBTEM_VAGAS_NO_TRECHO(2),
+	CONSULTA_TOTAL_RESERVAS(7),
+	CONSULTA_TOTAL_COMPRAS(8);
 	
 	int comando;
 	
@@ -27,6 +29,8 @@ public enum Protocolo {
 			case 5: return CONSULTA_RESERVA;
 			case 6: return CONSULTA_COMPRAS;
 			case 2: return OBTEM_VAGAS_NO_TRECHO;
+			case 7: return CONSULTA_TOTAL_RESERVAS;
+			case 8: return CONSULTA_TOTAL_COMPRAS;
 			default: return OBTEM_TRECHOS;
 		}
 	}

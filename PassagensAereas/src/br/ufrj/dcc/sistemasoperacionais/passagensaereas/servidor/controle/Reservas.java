@@ -41,7 +41,7 @@ public class Reservas {
 			Reserva reserva = obtemNovaReservaCliente(cliente);			 
 			reserva.SetNumeroAssentos(reserva.GetNumeroAssentos() + numeroDeAssentos);
 			trecho.setReservas(numReservasRealizadas + numeroDeAssentos);
-			new TimerLiberacaoReserva(reserva, this, trecho, 5);
+			reserva.setTimerLiberacao(new TimerLiberacaoReserva(reserva, this, trecho, 15));
 			resultado = true;
 		}
 		return resultado;		
@@ -61,7 +61,7 @@ public class Reservas {
 			Reserva reserva = reservas.get(i);
 			if (reserva.GetNumeroAssentos() >= numeroDeAssentos) {
 				int numAssentosComprados = trecho.getCompras(); 
-				if ((numAssentosComprados + numeroDeAssentos) < trecho.getAssentos()) {
+				if ((numAssentosComprados + numeroDeAssentos) <= trecho.getAssentos()) {
 					trecho.setCompras(numAssentosComprados + numeroDeAssentos);
 					resultado = true;
 				}

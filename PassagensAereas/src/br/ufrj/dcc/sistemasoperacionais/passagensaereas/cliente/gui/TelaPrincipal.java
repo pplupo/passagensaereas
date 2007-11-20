@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Trecho;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.listeners.AtualizarCompras;
+import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.listeners.AtualizarComprasTotais;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.listeners.AtualizarReservas;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.listeners.AtualizarReservasTotais;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.listeners.EfetuarCompras;
@@ -110,7 +111,7 @@ public class TelaPrincipal extends JFrame {
 	    JButton atualizarTotalCompras = new JButton("Atualizar Compras Totais");
 	    add(totalCompras, cellConstraints.xy(2, 8));
 	    add(atualizarTotalCompras, cellConstraints.xy(4, 8));
-	    atualizarTotalCompras.addActionListener(new AtualizarReservasTotais(table, totalCompras));
+	    atualizarTotalCompras.addActionListener(new AtualizarComprasTotais(table, totalCompras));
 	    
 	    JLabel totalReservas = new JLabel("Reservas totais: 0");
 	    JButton atualizarTotalReservas = new JButton("Atualizar Reservas Totais");

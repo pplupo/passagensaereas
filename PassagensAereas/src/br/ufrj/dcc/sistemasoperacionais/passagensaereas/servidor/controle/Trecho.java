@@ -62,7 +62,7 @@ public class Trecho {
 	}
 	
 	private static void notificaAtualizacaoDeTrecho(Trecho trecho){
-		TelaPrincipal.getInstance().atualizaTrechos();
+		TelaPrincipal.getInstance().atualizaTrecho(trecho);
 	}
 	
 	public boolean adicionaReserva(Object cliente, int numeroDeAssentos){
