@@ -12,10 +12,6 @@ public class AtualizarComprasTotais extends Listener {
 
 	JLabel consultarTotalCompras;
 	
-	protected AtualizarComprasTotais(JTable table) {
-		super(table);
-	}
-
 	public AtualizarComprasTotais(JTable table, JLabel consultarComprasTotais) {
 		super(table);
 		this.consultarTotalCompras = consultarComprasTotais;
@@ -28,7 +24,7 @@ public class AtualizarComprasTotais extends Listener {
 			if (compras < 0) {
 				compras = 0;
 			}
-			this.consultarTotalCompras.setText("Compras: " + compras);
+			this.consultarTotalCompras.setText("Compras totais: " + compras);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

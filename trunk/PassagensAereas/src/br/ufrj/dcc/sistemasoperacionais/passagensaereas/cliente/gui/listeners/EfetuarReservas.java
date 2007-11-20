@@ -14,10 +14,6 @@ public class EfetuarReservas extends AtualizarReservas {
 	JFormattedTextField quantidadeReservas;
 	JLabel consultarReservas;
 	
-	protected EfetuarReservas(JTable table) {
-		super(table);
-	}
-	
 	public EfetuarReservas(JTable table, JFormattedTextField quantidadeReservas, JLabel consultarReservas) {
 		super(table, consultarReservas);
 		this.quantidadeReservas = quantidadeReservas;

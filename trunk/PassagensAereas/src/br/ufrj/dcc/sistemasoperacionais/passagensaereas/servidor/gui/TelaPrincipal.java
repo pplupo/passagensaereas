@@ -1,7 +1,13 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.gui;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -55,12 +61,26 @@ public class TelaPrincipal extends JFrame {
 //		top:Xdlu align top
 //		bottom:Xdlu align bottom
         FormLayout layout = new FormLayout("4dlu, pref, 4dlu", 
-    										"4dlu, pref, pref, 4dlu");
+    										"4dlu, pref, 2dlu, pref, pref, 4dlu");
         setLayout(layout);
         
         CellConstraints cellConstraints = new CellConstraints();
-        table = new JTable();
         
+        try {
+        	JLabel ip = new JLabel("IP:");
+        	JTextField endereco = new JTextField(InetAddress.getLocalHost().getHostAddress());
+        	endereco.setEditable(false);
+        	JPanel ipPanel = new JPanel();
+        	ipPanel.add(ip);
+        	ipPanel.add(endereco);
+        	add(ipPanel, cellConstraints.xy(2, 2));
+//        	add(ip, cellConstraints.xy(2, 5));
+//        	add(endereco, cellConstraints.xy(3, 5));
+        } catch (UnknownHostException e) {
+        	e.printStackTrace();
+        }
+        
+        table = new JTable();
         DefaultTableModel tableModel = new DefaultTableModel();
         table.setModel(tableModel);		
         tableModel.addColumn("ID");
@@ -78,14 +98,18 @@ public class TelaPrincipal extends JFrame {
 		table.getTableHeader().setVisible(true);
 		
 //      cellConstraints.xywh(int, int, int, int) x,y coordenadas w,h rowspan, colspan
-	    add(table.getTableHeader(), cellConstraints.xy(2, 2));
-	    add(table, cellConstraints.xy(2, 3));
-
+	    add(table.getTableHeader(), cellConstraints.xy(2, 4));
+	    add(table, cellConstraints.xy(2, 5));
+	    
 	    pack();
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setLocationByPlatform(true);
 		setVisible(true);
 		setResizable(false);
+		
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setSize(table.getPreferredSize());
+		table.setPreferredSize(table.getPreferredSize());
 	}
 	
 	public void atualizaTrecho(Trecho trecho) {

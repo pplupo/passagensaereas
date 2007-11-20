@@ -12,10 +12,6 @@ public class AtualizarReservas extends Listener {
 
 	JLabel consultarReservas;
 	
-	protected AtualizarReservas(JTable table) {
-		super(table);
-	}
-	
 	public AtualizarReservas(JTable table, JLabel consultarReservas) {
 		super(table);
 		this.consultarReservas = consultarReservas;
