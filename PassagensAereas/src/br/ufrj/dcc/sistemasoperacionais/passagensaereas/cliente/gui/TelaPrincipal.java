@@ -1,5 +1,6 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -87,16 +88,20 @@ public class TelaPrincipal extends JFrame {
         tableModel.addColumn("Trechos");
         tableModel.addColumn("Vagas");
         
-		for (int i = 0; i < 5; i++) {
-			tableModel.addRow(new Object[] {"", "", ""});
-		}
-        
         JTable table = new JTable();
         table.setModel(tableModel);
         
+        table.getColumnModel().getColumn(0).setMaxWidth(20);
+        table.getColumnModel().getColumn(1).setMaxWidth(300);
+        table.getColumnModel().getColumn(2).setMaxWidth(40);
+        
+        for (int i = 0; i < 5; i++) {
+			tableModel.addRow(new Object[] {"", "", ""});
+		}
+        
 	    add(table.getTableHeader(), cellConstraints.xyw(2, 4, 3));
 	    add(table, cellConstraints.xyw(2, 5, 3));
-        
+        table.setGridColor(Color.WHITE);
 		table.getTableHeader().setEnabled(true);
 		table.getTableHeader().setVisible(true);
         
