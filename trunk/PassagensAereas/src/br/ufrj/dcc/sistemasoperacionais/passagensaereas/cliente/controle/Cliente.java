@@ -67,5 +67,16 @@ public class Cliente {
 		socket.sendInt(trecho);
 		return socket.readInt();
 	}
+	
+    public int obtemTotalCompras() throws IOException {
+    	socket.sendComando(Protocolo.CONSULTA_TOTAL_COMPRAS);
+    	return socket.readInt();
+    }
+    
+    public int obtemTotalReservas() throws IOException {
+    	socket.sendComando(Protocolo.CONSULTA_TOTAL_RESERVAS);
+    	return socket.readInt();
+    }
+	
 
 }

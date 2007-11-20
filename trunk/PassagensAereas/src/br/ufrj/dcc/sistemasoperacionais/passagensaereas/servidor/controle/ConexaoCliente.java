@@ -37,6 +37,12 @@ public class ConexaoCliente implements Runnable {
 					case OBTEM_VAGAS_NO_TRECHO:
 						obtemVagasNoTrecho();
 						break;
+					case CONSULTA_TOTAL_RESERVAS:
+						obtemTotalReservas();
+						break;
+					case CONSULTA_TOTAL_COMPRAS:
+						obtemTotalCompras();
+						break;
 					default:
 						conexaoAtiva = false;
 						break;
@@ -46,6 +52,16 @@ public class ConexaoCliente implements Runnable {
 			conexaoAtiva = false;
 			System.err.println("Conexão cliente terminada.");
 		}
+    }
+    
+    public void obtemTotalReservas() throws IOException {
+    	int resultado = servico.obtemTotalReservas();
+    	socket.sendInt(resultado);
+    }
+    
+    public void obtemTotalCompras() throws IOException {
+    	int resultado = servico.obtemTotalCompras();
+    	socket.sendInt(resultado);    	
     }
     
 	public void obtemTrechos() throws IOException {
@@ -67,8 +83,8 @@ public class ConexaoCliente implements Runnable {
 	}
 
 	public void compraTrecho() throws IOException {
-		int trecho = socket.readInt();
 		int numeroDeAssentos = socket.readInt();
+		int trecho = socket.readInt();
 		boolean resultado = servico.compraTrecho(trecho, numeroDeAssentos, this);
 		socket.sendBoolean(resultado);
 	}

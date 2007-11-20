@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.controle.Servidor;
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.controle.Trecho;
@@ -60,23 +61,21 @@ public class TelaPrincipal extends JFrame {
         CellConstraints cellConstraints = new CellConstraints();
         table = new JTable();
         
-//        DefaultTableModel tableModel = new DefaultTableModel();
-//        table.setModel(tableModel);
-//        tableModel.addColumn("ID");
-//        tableModel.addColumn("Trechos");
-//        tableModel.addColumn("Reservas");
-//        tableModel.addColumn("Compras");
-//        tableModel.addColumn("Assentos");
-//        tableModel.addColumn("Vagas");
-//        
-//		for (Trecho trecho : Servidor.getServico().getTrechos().list()) {
-//			tableModel.addRow(new Object[] {trecho.getId(), trecho.getNome(), trecho.getReservas(), trecho.getCompras(), trecho.getAssentos(), trecho.getVagas()});
-//		}
+        DefaultTableModel tableModel = new DefaultTableModel();
+        table.setModel(tableModel);		
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Trechos");
+        tableModel.addColumn("Reservas");
+        tableModel.addColumn("Compras");
+        tableModel.addColumn("Assentos");
+        tableModel.addColumn("Vagas");
+        
+		for (Trecho trecho : Servidor.getServico().getTrechos().list()) {
+			tableModel.addRow(new Object[] {trecho.getId(), trecho.getNome(), trecho.getReservas(), trecho.getCompras(), trecho.getAssentos(), trecho.getVagas()});
+		}
 		
 		table.getTableHeader().setEnabled(true);
 		table.getTableHeader().setVisible(true);
-		
-		atualizaTrechos();
 		
 //      cellConstraints.xywh(int, int, int, int) x,y coordenadas w,h rowspan, colspan
 	    add(table.getTableHeader(), cellConstraints.xy(2, 2));
@@ -89,18 +88,13 @@ public class TelaPrincipal extends JFrame {
 		setResizable(false);
 	}
 	
-	public void atualizaTrechos() {
-		DefaultTableModel tableModel = new DefaultTableModel();
-        table.setModel(tableModel);
-        tableModel.addColumn("ID");
-        tableModel.addColumn("Trechos");
-        tableModel.addColumn("Reservas");
-        tableModel.addColumn("Compras");
-        tableModel.addColumn("Assentos");
-        tableModel.addColumn("Vagas");
-        
-		for (Trecho trecho : Servidor.getServico().getTrechos().list()) {
-			tableModel.addRow(new Object[] {trecho.getId(), trecho.getNome(), trecho.getReservas(), trecho.getCompras(), trecho.getAssentos(), trecho.getVagas()});
-		}
+	public void atualizaTrecho(Trecho trecho) {
+		int linha = trecho.getId() - 1;
+		TableModel tableModel = table.getModel();
+
+		tableModel.setValueAt(trecho.getReservas(), linha, 2);
+		tableModel.setValueAt(trecho.getCompras(), linha, 3);
+		tableModel.setValueAt(trecho.getAssentos(), linha, 4);
+		tableModel.setValueAt(trecho.getVagas(), linha, 5);
 	}
 }

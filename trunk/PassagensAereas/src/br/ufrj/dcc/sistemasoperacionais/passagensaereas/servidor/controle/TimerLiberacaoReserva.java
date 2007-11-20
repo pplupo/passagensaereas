@@ -21,6 +21,10 @@ public class TimerLiberacaoReserva {
 		timer.schedule(new RunTimerTask(), horaExecucao);
 	}
 	
+	public void CancelaTimer(){
+		timer.cancel();
+	}	
+	
 	 private class RunTimerTask extends TimerTask
 	  {
 	    public final void run()
@@ -28,7 +32,7 @@ public class TimerLiberacaoReserva {
         	trecho.bloqueiaTrecho();
         	reservas.removeReserva(reserva);	        	
         	trecho.desbloqueiaTrecho();
-        	timer.cancel();
+        	CancelaTimer();
 	    }
 	  }	
 	

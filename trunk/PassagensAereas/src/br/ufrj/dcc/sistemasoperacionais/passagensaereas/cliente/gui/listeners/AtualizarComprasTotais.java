@@ -23,15 +23,15 @@ public class AtualizarComprasTotais extends Listener {
 
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-//		try {
-//			int compras = Cliente.getInstance().consultarComprasTotais();
-//			if (compras < 0) {
-//				compras = 0;
-//			}
-//			consultarComprasTotais.setText("Compras: " + compras);
-//		} catch (IOException ex) {
-//			ex.printStackTrace();
-//		}
+		try {
+			int compras = Cliente.getInstance().obtemTotalCompras();
+			if (compras < 0) {
+				compras = 0;
+			}
+			this.consultarTotalCompras.setText("Compras: " + compras);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 

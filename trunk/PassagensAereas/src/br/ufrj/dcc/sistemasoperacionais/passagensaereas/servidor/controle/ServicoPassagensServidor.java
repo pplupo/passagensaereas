@@ -41,9 +41,23 @@ public class ServicoPassagensServidor {
 		Trecho objTrecho = trechos.getTrecho(trecho);
 		return (objTrecho != null ? objTrecho.getCompras() : -1);
     }
+    
+    public synchronized int obtemTotalCompras(){
+    	int resultado = 0;
+    	for (Trecho trecho : trechos.list())
+    		resultado += trecho.getCompras();    	
+    	return resultado;
+    }
+    
+    public synchronized int obtemTotalReservas(){
+    	int resultado = 0;
+    	for (Trecho trecho : trechos.list())
+    		resultado += trecho.getReservas();
+    	return resultado;
+    }
 
 	public Trechos getTrechos() {
 		return trechos;
-	}
+	}	
 	
 }
