@@ -1,6 +1,8 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.gui.listeners;
 
 import java.awt.event.ActionEvent;
+import java.net.ConnectException;
+import java.net.UnknownHostException;
 
 import javax.swing.JTable;
 
@@ -21,8 +23,14 @@ public class Conectar extends Listener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		try {
 		Cliente.getInstance(ip.getModel().getAtString());
 		super.actionPerformed(e);
 		telaPrincipal.habilitarBotoes();
+		} catch (ConnectException ex) {
+			ex.printStackTrace();
+		} catch (UnknownHostException ex) {
+			ex.printStackTrace();
+		}
 	}
 }

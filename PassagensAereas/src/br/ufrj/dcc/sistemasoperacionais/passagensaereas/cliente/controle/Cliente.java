@@ -1,6 +1,8 @@
 package br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.TreeSet;
 
@@ -9,11 +11,11 @@ import br.ufrj.dcc.sistemasoperacionais.passagensaereas.comunicacao.SocketAdapte
 
 public class Cliente {
 
-	private static SocketAdapter socket = new SocketAdapter();
+	private static SocketAdapter socket;
 	private static Cliente instance;
 	private static String lastIP = "";
 	
-	public static Cliente getInstance(String ip) {
+	public static Cliente getInstance(String ip) throws ConnectException, UnknownHostException {
 		if (ip == null || lastIP.equals(ip)) {
 			return null;
 		}
@@ -27,7 +29,8 @@ public class Cliente {
 		return instance;
 	}
 
-	private Cliente(String ip) {
+	private Cliente(String ip) throws ConnectException {
+		socket = new SocketAdapter();
 		socket.connectTo(ip, 5000);
 	}
 
