@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: br.ufrj.dcc.sistemasoperacionais.passagensaereas.servidor.
+ ServidorMain
+Class-Path: looks-2.1.4.jar forms-1.1.0.jar
