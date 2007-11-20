@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.C
+ lienteMain
+Class-Path: looks-2.1.4.jar forms-1.1.0.jar smartjcommon_1.7.1.jar smartjswing_1.2.6.jar
