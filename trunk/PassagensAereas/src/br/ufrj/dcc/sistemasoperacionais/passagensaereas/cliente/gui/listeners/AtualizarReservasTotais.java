@@ -8,12 +8,12 @@ import javax.swing.JTable;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 
-public class AtualizarReservasTotais extends Listener {
+public class AtualizarReservasTotais extends AtualizarReservas {
 
 	JLabel consultarReservasTotais;
 	
-	public AtualizarReservasTotais(JTable table, JLabel consultarReservasTotais) {
-		super(table);
+	public AtualizarReservasTotais(JTable table, JLabel consultarReservas, JLabel consultarReservasTotais) {
+		super(table, consultarReservas);
 		this.consultarReservasTotais = consultarReservasTotais;
 	}
 

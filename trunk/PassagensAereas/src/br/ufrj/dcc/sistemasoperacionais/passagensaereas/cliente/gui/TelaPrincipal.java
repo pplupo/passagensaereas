@@ -147,14 +147,14 @@ public class TelaPrincipal extends JFrame {
 	    atualizarTotalCompras = new JButton("Atualizar Compras Totais");
 	    add(totalCompras, cellConstraints.xy(2, 10));
 	    add(atualizarTotalCompras, cellConstraints.xy(4, 10));
-	    atualizarTotalCompras.addActionListener(new AtualizarComprasTotais(table, totalCompras));
+	    atualizarTotalCompras.addActionListener(new AtualizarComprasTotais(table, consultarCompras, totalCompras));
 	    
 	    JLabel totalReservas = new JLabel("Reservas totais: ");
 	    totalReservas.setPreferredSize(new Dimension(100, 14));
 	    atualizarTotalReservas = new JButton("Atualizar Reservas Totais");
 	    add(totalReservas, cellConstraints.xy(2, 11));
 	    add(atualizarTotalReservas, cellConstraints.xy(4, 11));
-	    atualizarTotalReservas.addActionListener(new AtualizarReservasTotais(table, totalReservas));
+	    atualizarTotalReservas.addActionListener(new AtualizarReservasTotais(table, consultarReservas, totalReservas));
 	    
 		atualizarTotalReservas.setEnabled(false);
 		atualizarReservas.setEnabled(false);

@@ -8,12 +8,12 @@ import javax.swing.JTable;
 
 import br.ufrj.dcc.sistemasoperacionais.passagensaereas.cliente.controle.Cliente;
 
-public class AtualizarComprasTotais extends Listener {
+public class AtualizarComprasTotais extends AtualizarCompras {
 
 	JLabel consultarTotalCompras;
 	
-	public AtualizarComprasTotais(JTable table, JLabel consultarComprasTotais) {
-		super(table);
+	public AtualizarComprasTotais(JTable table, JLabel consultarCompras, JLabel consultarComprasTotais) {
+		super(table, consultarCompras);
 		this.consultarTotalCompras = consultarComprasTotais;
 	}
 
