@@ -24,7 +24,10 @@ public class AtualizarCompras extends Listener {
 			if (compras < 0) {
 				compras = 0;
 			}
-			consultarCompras.setText(compras + " assento(s) comprado(s).");
+			if (compras < 1) 
+				consultarCompras.setText("não existem compras para o trecho selecionado.");
+			else
+				consultarCompras.setText("existem " + compras + " assento(s) comprado(s).");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException ex) {
