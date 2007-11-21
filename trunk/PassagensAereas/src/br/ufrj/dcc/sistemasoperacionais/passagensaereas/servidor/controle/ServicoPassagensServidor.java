@@ -6,11 +6,11 @@ public class ServicoPassagensServidor {
 
 	public ServicoPassagensServidor() {
 		trechos = new Trechos();
-		trechos.adicionaTrecho(1, "RJ-SP", 100);
-		trechos.adicionaTrecho(2, "RJ-SA", 50);
-		trechos.adicionaTrecho(3, "RJ-BH", 30);
-		trechos.adicionaTrecho(4, "RJ-BR", 100);
-		trechos.adicionaTrecho(5, "RJ-MN", 20);
+		trechos.adicionaTrecho(1, "Rio de Janeiro - São Paulo", 100);
+		trechos.adicionaTrecho(2, "Rio de Janeiro - Salvador", 50);
+		trechos.adicionaTrecho(3, "Rio de Janeiro - Belo Horizonte", 30);
+		trechos.adicionaTrecho(4, "Rio de Janeiro - Brasília", 100);
+		trechos.adicionaTrecho(5, "Rio de Janeiro - Minas Gerais", 20);
 	}
     
     public synchronized String obtemTrechos() {
