@@ -1,0 +1,7 @@
+MIDlet-Name: PassagensAereasME MIDlet Suite
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: eclipse.org
+MIDlet-Jar-Size:
+MIDlet-Jar-URL: PassagensAereasME.jar
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
