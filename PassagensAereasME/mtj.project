@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.mtj.api.project:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.mtj.api.project="http:///org/eclipse/mtj/api/project.ecore">
+  <defaultTargetDevice name="J2ME Wireless Toolkit 2.2 - MediaControlSkin" description="Generic UEI device" devicePlatformName="J2ME Wireless Toolkit 2.2" deviceName="MediaControlSkin">
+    <runtimePlatform name="Generic UEI Vendor MediaControlSkin Runtime Platform">
+      <deviceProfiles name="MIDP" version="2.0">
+        <serviceApis name="MIDP" version="2.0" description="Mobile Information Device Profile">
+          <implementation fileRef="C:/WTK22/lib/midpapi20.jar"/>
+        </serviceApis>
+      </deviceProfiles>
+      <serviceApis name="WMA" version="2.0" description="Wireless Messaging API">
+        <implementation fileRef="C:/WTK22/lib/wma20.jar"/>
+      </serviceApis>
+      <serviceApis name="WMA" version="1.1" description="Wireless Messaging API">
+        <implementation fileRef="C:/WTK22/lib/wma11.jar"/>
+      </serviceApis>
+      <serviceApis name="MMAPI" version="1.1" description="Mobile Media API">
+        <implementation fileRef="C:/WTK22/lib/mmapi.jar"/>
+      </serviceApis>
+      <serviceApis name="JSR172" version="1.0" description="J2ME Web Services">
+        <implementation fileRef="C:/WTK22/lib/j2me-ws.jar"/>
+      </serviceApis>
+      <serviceApis name="JSR75" version="1.0" description="File Connection and PIM Optional Packages">
+        <implementation fileRef="C:/WTK22/lib/jsr75.jar"/>
+      </serviceApis>
+      <serviceApis name="JSR82" version="1.0" description="Java APIs for Bluetooth Wireless Technology">
+        <implementation fileRef="C:/WTK22/lib/jsr082.jar"/>
+      </serviceApis>
+      <serviceApis name="JSR184" version="1.0" description="Mobile 3D Graphics Optional Package">
+        <implementation fileRef="C:/WTK22/lib/jsr184.jar"/>
+      </serviceApis>
+      <deviceConfigurations name="CLDC" version="1.1">
+        <implementation fileRef="C:/WTK22/lib/cldcapi11.jar"/>
+      </deviceConfigurations>
+    </runtimePlatform>
+  </defaultTargetDevice>
+</org.eclipse.mtj.api.project:Project>
